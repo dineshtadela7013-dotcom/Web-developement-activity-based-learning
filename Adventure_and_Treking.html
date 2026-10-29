@@ -1,0 +1,610 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WildTrails | Adventure & Trekking</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f8f2;
+            color: #24352b;
+        }
+
+        /* Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 8%;
+            background: #18392c;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: bold;
+            color: #d6ef8b;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 22px;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #d6ef8b;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            padding: 90px 8%;
+            background:
+                linear-gradient(90deg, #102a21e8, #102a2160),
+                url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=85")
+                center/cover;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 680px;
+        }
+
+        .tag {
+            color: #d6ef8b;
+            letter-spacing: 3px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 6vw, 76px);
+            line-height: 1.1;
+            margin: 22px 0;
+        }
+
+        .hero h1 span {
+            color: #d6ef8b;
+        }
+
+        .hero p {
+            color: #eeeeea;
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 24px;
+            background: #d6ef8b;
+            color: #18392c;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        /* Common sections */
+        section {
+            padding: 70px 8%;
+        }
+
+        .section-title {
+            font-size: 34px;
+            margin-bottom: 14px;
+        }
+
+        .section-title span {
+            color: #60864b;
+        }
+
+        .section-desc {
+            color: #6d786e;
+            line-height: 1.7;
+            margin-bottom: 35px;
+        }
+
+        /* Destinations */
+        .destinations {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .destination-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px #0000000c;
+            transition: 0.3s;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .destination-card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-content {
+            padding: 22px;
+        }
+
+        .card-content h3 {
+            font-size: 22px;
+            margin: 12px 0;
+        }
+
+        .card-content p {
+            color: #6d786e;
+            line-height: 1.7;
+            margin-bottom: 17px;
+        }
+
+        .label {
+            color: #60864b;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* Activities */
+        .activities {
+            background: #e9eee2;
+        }
+
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .activity-card {
+            padding: 30px 20px;
+            background: white;
+            text-align: center;
+            border-radius: 10px;
+            border-bottom: 4px solid #a4c66a;
+            transition: 0.3s;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .activity-card .emoji {
+            font-size: 38px;
+        }
+
+        .activity-card h3 {
+            margin: 16px 0 10px;
+        }
+
+        .activity-card p {
+            color: #6d786e;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* About */
+        .about {
+            display: flex;
+            align-items: center;
+            gap: 45px;
+        }
+
+        .about img {
+            width: 48%;
+            border-radius: 12px;
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-content p {
+            color: #6d786e;
+            line-height: 1.9;
+            margin: 18px 0;
+        }
+
+        .about-content ul {
+            list-style: none;
+            line-height: 2.3;
+        }
+
+        .about-content li::before {
+            content: "✓ ";
+            color: #60864b;
+            font-weight: bold;
+        }
+
+        /* Packages */
+        .packages {
+            background: #18392c;
+            color: white;
+        }
+
+        .packages .section-desc {
+            color: #c5d1c6;
+        }
+
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .package-card {
+            background: #244738;
+            padding: 30px 24px;
+            border: 1px solid #476858;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        .package-card:hover {
+            border-color: #d6ef8b;
+            transform: translateY(-5px);
+        }
+
+        .package-card h3 {
+            font-size: 23px;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            color: #d6ef8b;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 18px 0;
+        }
+
+        .package-card p {
+            color: #d5e0d6;
+            line-height: 1.8;
+            margin-bottom: 22px;
+        }
+
+        /* Booking */
+        .booking {
+            text-align: center;
+            background:
+                linear-gradient(#f7f8f2e8, #f7f8f2e8),
+                url("https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1500&q=80")
+                center/cover;
+        }
+
+        .booking h2 {
+            font-size: 36px;
+            margin-bottom: 18px;
+        }
+
+        .booking p {
+            color: #5d6d60;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        footer {
+            padding: 28px 8%;
+            text-align: center;
+            background: #102a21;
+            color: #c7d2c9;
+            line-height: 1.8;
+        }
+
+        footer span {
+            color: #d6ef8b;
+        }
+
+        /* Responsive design */
+        @media (max-width: 850px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0;
+            }
+
+            .destinations,
+            .package-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .activity-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about {
+                flex-direction: column;
+            }
+
+            .about img {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 550px) {
+            section {
+                padding: 50px 6%;
+            }
+
+            .hero {
+                min-height: 500px;
+                padding: 65px 6%;
+            }
+
+            .destinations,
+            .package-grid,
+            .activity-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 29px;
+            }
+
+            .booking h2 {
+                font-size: 29px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <div class="logo">🏔 WILDTRAILS</div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#destinations">Destinations</a>
+            <a href="#activities">Activities</a>
+            <a href="#about">About</a>
+            <a href="#packages">Packages</a>
+            <a href="#booking">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="tag">EXPLORE • DISCOVER • ADVENTURE</div>
+
+            <h1>THE WILD IS<br>
+                <span>CALLING YOU.</span>
+            </h1>
+
+            <p>
+                Discover breathtaking mountains, explore hidden trails,
+                camp under the stars, and create unforgettable memories
+                with our adventure and trekking experiences.
+            </p>
+
+            <a href="#destinations" class="btn">EXPLORE DESTINATIONS</a>
+        </div>
+    </section>
+
+    <!-- Destinations -->
+    <section id="destinations">
+        <h2 class="section-title">POPULAR <span>DESTINATIONS</span></h2>
+
+        <p class="section-desc">
+            Find your next adventure among some of the world's
+            most beautiful landscapes.
+        </p>
+
+        <div class="destinations">
+
+            <div class="destination-card">
+                <img
+                    src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=700&q=80"
+                    alt="Snow-covered Himalayan mountains">
+
+                <div class="card-content">
+                    <div class="label">HIMALAYAS, INDIA</div>
+                    <h3>Mountain Trekking</h3>
+                    <p>
+                        Walk through spectacular mountain scenery
+                        and experience the beauty of the Himalayas.
+                    </p>
+                    <a href="#packages" class="btn">Explore More</a>
+                </div>
+            </div>
+
+            <div class="destination-card">
+                <img
+                    src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=700&q=80"
+                    alt="Beautiful green wilderness">
+
+                <div class="card-content">
+                    <div class="label">FOREST TRAILS</div>
+                    <h3>Jungle Adventure</h3>
+                    <p>
+                        Discover green forests, peaceful nature trails,
+                        and amazing outdoor experiences.
+                    </p>
+                    <a href="#packages" class="btn">Explore More</a>
+                </div>
+            </div>
+
+            <div class="destination-card">
+                <img
+                    src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=80"
+                    alt="Scenic outdoor mountain landscape">
+
+                <div class="card-content">
+                    <div class="label">SCENIC GETAWAYS</div>
+                    <h3>Weekend Escape</h3>
+                    <p>
+                        Take a break from busy city life and enjoy
+                        refreshing outdoor adventures with friends.
+                    </p>
+                    <a href="#packages" class="btn">Explore More</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Activities -->
+    <section class="activities" id="activities">
+        <h2 class="section-title">ADVENTURE <span>ACTIVITIES</span></h2>
+
+        <p class="section-desc">
+            Choose an experience that makes your heart race.
+        </p>
+
+        <div class="activity-grid">
+
+            <div class="activity-card">
+                <div class="emoji">🥾</div>
+                <h3>Trekking</h3>
+                <p>Explore mountain paths and scenic trails.</p>
+            </div>
+
+            <div class="activity-card">
+                <div class="emoji">⛺</div>
+                <h3>Camping</h3>
+                <p>Enjoy outdoor nights under the stars.</p>
+            </div>
+
+            <div class="activity-card">
+                <div class="emoji">🧗</div>
+                <h3>Rock Climbing</h3>
+                <p>Challenge yourself with guided climbing.</p>
+            </div>
+
+            <div class="activity-card">
+                <div class="emoji">🔥</div>
+                <h3>Bonfire Nights</h3>
+                <p>Relax with friends after a day outdoors.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <img
+            src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=900&q=85"
+            alt="Hikers exploring a mountain trail">
+
+        <div class="about-content">
+            <h2 class="section-title">ABOUT <span>WILDTRAILS</span></h2>
+
+            <p>
+                WildTrails is an adventure travel concept created for
+                people who love nature, exploration, and outdoor
+                experiences. Our goal is to make every journey
+                memorable while encouraging responsible tourism.
+            </p>
+
+            <ul>
+                <li>Experienced trek leaders</li>
+                <li>Carefully planned outdoor trips</li>
+                <li>Small-group adventure experiences</li>
+                <li>Nature-friendly travel practices</li>
+                <li>Beginner-friendly options</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Tour packages -->
+    <section class="packages" id="packages">
+        <h2 class="section-title">OUR TOUR <span>PACKAGES</span></h2>
+
+        <p class="section-desc">
+            Choose a sample package for your next adventure.
+        </p>
+
+        <div class="package-grid">
+
+            <div class="package-card">
+                <h3>Weekend Trek</h3>
+                <p>Duration: 2 Days / 1 Night</p>
+                <p>Guided hike, scenic viewpoints, and camping experience.</p>
+                <div class="price">₹2,499</div>
+                <a href="#booking" class="btn">Book Adventure</a>
+            </div>
+
+            <div class="package-card">
+                <h3>Mountain Explorer</h3>
+                <p>Duration: 4 Days / 3 Nights</p>
+                <p>Mountain trails, guided trekking, and nature exploration.</p>
+                <div class="price">₹5,999</div>
+                <a href="#booking" class="btn">Book Adventure</a>
+            </div>
+
+            <div class="package-card">
+                <h3>Ultimate Adventure</h3>
+                <p>Duration: 6 Days / 5 Nights</p>
+                <p>A longer outdoor experience with trekking and camping.</p>
+                <div class="price">₹9,999</div>
+                <a href="#booking" class="btn">Book Adventure</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Booking -->
+    <section class="booking" id="booking">
+        <h2>YOUR NEXT ADVENTURE <span style="color:#60864b">
+            STARTS HERE!</span></h2>
+
+        <p>
+            Pack your bags, gather your friends, and explore the
+            extraordinary beauty of nature.<br>
+            Get in touch to plan your next outdoor experience.
+        </p>
+
+        <a href="mailto:adventures@example.com?subject=Adventure%20Trip%20Enquiry"
+           class="btn">CONTACT US</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 <span>WILDTRAILS</span> | Adventure & Trekking</p>
+        <p>Explore More. Travel Far. Leave Only Footprints. 🌿</p>
+    </footer>
+
+</body>
+</html>
