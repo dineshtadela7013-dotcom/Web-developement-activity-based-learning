@@ -1,0 +1,613 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FITZONE | Fitness & Gym</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #101010;
+            color: white;
+        }
+
+        /* Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 8%;
+            background: #080808;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #d7ff00;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 24px;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #d7ff00;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 570px;
+            display: flex;
+            align-items: center;
+            padding: 80px 8%;
+            background:
+                linear-gradient(90deg, #101010 15%, #101010bb 55%, #10101033),
+                url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1800&q=85")
+                center/cover;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 6vw, 72px);
+            line-height: 1.1;
+            margin: 20px 0;
+        }
+
+        .hero h1 span {
+            color: #d7ff00;
+        }
+
+        .hero p {
+            color: #d0d0d0;
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .tag {
+            color: #d7ff00;
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 25px;
+            background: #d7ff00;
+            color: #111;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        /* Common Sections */
+        section {
+            padding: 70px 8%;
+        }
+
+        .section-title {
+            font-size: 34px;
+            margin-bottom: 15px;
+        }
+
+        .section-title span {
+            color: #d7ff00;
+        }
+
+        .section-desc {
+            color: #aaa;
+            margin-bottom: 35px;
+            line-height: 1.7;
+        }
+
+        /* Workout Programs */
+        .programs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .program-card {
+            background: #1b1b1b;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #292929;
+            transition: 0.3s;
+        }
+
+        .program-card:hover {
+            transform: translateY(-8px);
+            border-color: #d7ff00;
+        }
+
+        .program-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-content {
+            padding: 22px;
+        }
+
+        .card-content h3 {
+            font-size: 22px;
+            margin: 12px 0;
+        }
+
+        .card-content p {
+            color: #aaa;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .small-tag {
+            color: #d7ff00;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* About */
+        .about {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            background: #191919;
+        }
+
+        .about img {
+            width: 48%;
+            border-radius: 10px;
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-content p {
+            color: #bbb;
+            line-height: 1.9;
+            margin: 18px 0 25px;
+        }
+
+        .about-content ul {
+            list-style: none;
+            line-height: 2.2;
+        }
+
+        .about-content li::before {
+            content: "✓ ";
+            color: #d7ff00;
+            font-weight: bold;
+        }
+
+        /* Trainers */
+        .trainers {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .trainer-card {
+            background: #1b1b1b;
+            text-align: center;
+            padding-bottom: 22px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .trainer-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .trainer-card h3 {
+            margin: 18px 0 8px;
+        }
+
+        .trainer-card p {
+            color: #d7ff00;
+            font-size: 14px;
+        }
+
+        /* Membership */
+        .membership {
+            background: #191919;
+        }
+
+        .plans {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .plan-card {
+            background: #101010;
+            padding: 32px 24px;
+            text-align: center;
+            border: 1px solid #333;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .plan-card:hover {
+            border-color: #d7ff00;
+            transform: translateY(-5px);
+        }
+
+        .plan-card.featured {
+            border: 2px solid #d7ff00;
+        }
+
+        .plan-card h3 {
+            font-size: 23px;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 35px;
+            color: #d7ff00;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .plan-card ul {
+            list-style: none;
+            color: #bbb;
+            line-height: 2.5;
+            margin-bottom: 25px;
+        }
+
+        /* Contact */
+        .contact {
+            text-align: center;
+        }
+
+        .contact p {
+            color: #bbb;
+            line-height: 1.8;
+            margin: 15px 0 25px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #080808;
+            color: #999;
+            line-height: 1.8;
+        }
+
+        footer span {
+            color: #d7ff00;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 800px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0;
+            }
+
+            .programs,
+            .trainers,
+            .plans {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about {
+                flex-direction: column;
+            }
+
+            .about img {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .programs,
+            .trainers,
+            .plans {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 50px 6%;
+            }
+
+            .hero {
+                padding: 65px 6%;
+            }
+
+            .section-title {
+                font-size: 29px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <div class="logo">FITZONE</div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#programs">Programs</a>
+            <a href="#about">About</a>
+            <a href="#trainers">Trainers</a>
+            <a href="#membership">Membership</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="tag">YOUR FITNESS JOURNEY STARTS HERE</div>
+
+            <h1>BUILD YOUR<br>
+                <span>BEST VERSION.</span>
+            </h1>
+
+            <p>
+                Transform your body, strengthen your mind, and
+                achieve your fitness goals with expert trainers,
+                modern equipment, and personalized workout programs.
+            </p>
+
+            <a href="#membership" class="btn">JOIN OUR GYM</a>
+        </div>
+    </section>
+
+    <!-- Programs -->
+    <section id="programs">
+        <h2 class="section-title">OUR <span>PROGRAMS</span></h2>
+
+        <p class="section-desc">
+            Choose your workout and take the first step toward a
+            stronger, healthier lifestyle.
+        </p>
+
+        <div class="programs">
+
+            <div class="program-card">
+                <img
+                    src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=700&q=80"
+                    alt="Strength training workout">
+
+                <div class="card-content">
+                    <div class="small-tag">BUILD STRENGTH</div>
+                    <h3>Weight Training</h3>
+                    <p>
+                        Improve your strength and build muscle with
+                        structured resistance training.
+                    </p>
+                    <a href="#contact" class="btn">Learn More</a>
+                </div>
+            </div>
+
+            <div class="program-card">
+                <img
+                    src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=700&q=80"
+                    alt="Cardio fitness training">
+
+                <div class="card-content">
+                    <div class="small-tag">BOOST YOUR ENERGY</div>
+                    <h3>Cardio Fitness</h3>
+                    <p>
+                        Improve stamina and cardiovascular fitness
+                        through enjoyable aerobic workouts.
+                    </p>
+                    <a href="#contact" class="btn">Learn More</a>
+                </div>
+            </div>
+
+            <div class="program-card">
+                <img
+                    src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=700&q=80"
+                    alt="Yoga and flexibility training">
+
+                <div class="card-content">
+                    <div class="small-tag">MIND & BODY</div>
+                    <h3>Yoga & Flexibility</h3>
+                    <p>
+                        Develop flexibility, balance, and relaxation
+                        with guided movement and breathing.
+                    </p>
+                    <a href="#contact" class="btn">Learn More</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <img
+            src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=85"
+            alt="Modern gym interior">
+
+        <div class="about-content">
+            <h2 class="section-title">WHY CHOOSE <span>US?</span></h2>
+
+            <p>
+                At FITZONE, we believe fitness is more than just
+                exercise. It is a lifestyle. Our gym provides a
+                supportive environment to help you stay motivated
+                and work toward your personal goals.
+            </p>
+
+            <ul>
+                <li>Modern gym equipment</li>
+                <li>Experienced fitness trainers</li>
+                <li>Personalized workout plans</li>
+                <li>Friendly and motivating atmosphere</li>
+                <li>Flexible membership options</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Trainers -->
+    <section id="trainers">
+        <h2 class="section-title">OUR EXPERT <span>TRAINERS</span></h2>
+
+        <p class="section-desc">
+            Get guidance and motivation from our fitness team.
+        </p>
+
+        <div class="trainers">
+
+            <div class="trainer-card">
+                <img
+                    src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?auto=format&fit=crop&w=700&q=80"
+                    alt="Fitness trainer">
+
+                <h3>Alex Johnson</h3>
+                <p>STRENGTH TRAINER</p>
+            </div>
+
+            <div class="trainer-card">
+                <img
+                    src="https://images.unsplash.com/photo-1546483875-ad9014c88eba?auto=format&fit=crop&w=700&q=80"
+                    alt="Personal fitness trainer">
+
+                <h3>Sarah Miller</h3>
+                <p>FITNESS COACH</p>
+            </div>
+
+            <div class="trainer-card">
+                <img
+                    src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=700&q=80"
+                    alt="Personal training session">
+
+                <h3>Ryan Smith</h3>
+                <p>PERSONAL TRAINER</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Membership Plans -->
+    <section class="membership" id="membership">
+        <h2 class="section-title">MEMBERSHIP <span>PLANS</span></h2>
+
+        <p class="section-desc">
+            Find the right plan for your fitness journey.
+        </p>
+
+        <div class="plans">
+
+            <div class="plan-card">
+                <h3>Basic</h3>
+                <div class="price">₹999</div>
+                <p>Per Month</p>
+
+                <ul>
+                    <li>Gym Access</li>
+                    <li>Basic Equipment</li>
+                    <li>Group Workouts</li>
+                </ul>
+
+                <a href="#contact" class="btn">Choose Plan</a>
+            </div>
+
+            <div class="plan-card featured">
+                <h3>Premium</h3>
+                <div class="price">₹1,999</div>
+                <p>Per Month</p>
+
+                <ul>
+                    <li>Full Gym Access</li>
+                    <li>Personal Training Sessions</li>
+                    <li>Workout Planning</li>
+                    <li>Group Classes</li>
+                </ul>
+
+                <a href="#contact" class="btn">Choose Plan</a>
+            </div>
+
+            <div class="plan-card">
+                <h3>Elite</h3>
+                <div class="price">₹2,999</div>
+                <p>Per Month</p>
+
+                <ul>
+                    <li>All Premium Features</li>
+                    <li>Dedicated Trainer</li>
+                    <li>Personalized Fitness Plan</li>
+                    <li>Progress Tracking</li>
+                </ul>
+
+                <a href="#contact" class="btn">Choose Plan</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <h2 class="section-title">START YOUR <span>TRANSFORMATION</span></h2>
+
+        <p>
+            Ready to become stronger and healthier?<br>
+            Contact us today and take the first step.
+        </p>
+
+        <p>
+            📍 Location: Your City, India<br>
+            📞 Phone: +91 98765 43210<br>
+            ✉ Email: fitzone@example.com
+        </p>
+
+        <a href="mailto:fitzone@example.com?subject=Gym%20Membership"
+           class="btn">CONTACT US</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 <span>FITZONE</span> | Fitness & Gym Website</p>
+        <p>Train Hard. Stay Strong. Live Healthy.</p>
+    </footer>
+
+</body>
+</html>
